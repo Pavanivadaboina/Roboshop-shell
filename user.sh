@@ -30,6 +30,7 @@ systemctl daemon-reload
 systemctl enable user
 systemctl restart user
 
+
 echo -e "\e[34m>>>>>>> copy mongo repo    >>>>>>>\e[0m"
 cp /home/centos/Roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
 
