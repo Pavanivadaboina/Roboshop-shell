@@ -23,6 +23,7 @@ echo -e "\e[34m>>>>>>> Install Dependencies  >>>>>>>\e[0m"
 npm install
 
 echo -e "\e[34m>>>>>>> Setup SystemD Service   >>>>>>>\e[0m"
+
 cp /home/centos/Roboshop-shell/cart.service /etc/systemd/system/cart.service
 
 echo -e "\e[34m>>>>>>> Start cart Service >>>>>>>\e[0m"
