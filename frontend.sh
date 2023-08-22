@@ -11,7 +11,6 @@ rm -rf /usr/share/nginx/html/*
 echo -e "\e[32m>>>>>>> Download the App Content <<<<<<<\e[0m"
 curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
 
-
 echo -e "\e[32m >>>>>>> Unzip App Content <<<<<<<\e[0m"
 cd /usr/share/nginx/html
 unzip /tmp/frontend.zip
