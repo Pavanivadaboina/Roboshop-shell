@@ -18,5 +18,5 @@ unzip /tmp/frontend.zip
 echo -e "\e[32m >>>>>>> Set up SystemD Service <<<<<<<\e[0m"
 cp /home/centos/Roboshop-shell/roboshop.conf /etc/nginx/default.d/roboshop.conf
 
-eecho -e "\e[32m >>>>>>> Restart Nginx <<<<<<<\e[0m"
+echo -e "\e[32m >>>>>>> Restart Nginx <<<<<<<\e[0m"
 systemctl restart nginx
