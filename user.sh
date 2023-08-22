@@ -25,7 +25,7 @@ npm install
 echo -e "\e[34m>>>>>>> Setup SystemD Service   >>>>>>>\e[0m"
 cp /home/centos/Roboshop-shell/user.service /etc/systemd/system/user.service
 
-echo -e "\e[34m>>>>>>> Start Catalogue Service >>>>>>>\e[0m"
+echo -e "\e[34m>>>>>>> Start User Service >>>>>>>\e[0m"
 systemctl daemon-reload
 systemctl enable user
 systemctl restart user
