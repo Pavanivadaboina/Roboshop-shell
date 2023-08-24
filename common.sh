@@ -40,6 +40,6 @@ systemctl daemon-reload
 
 echo -e "\e[34m>>>>>>> Restart cart Service >>>>>>>\e[0m"
 systemctl enable ${component}
-systemctl restart ${component}}
+systemctl restart ${component}
 
 }
