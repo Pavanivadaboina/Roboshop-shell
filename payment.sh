@@ -2,6 +2,7 @@ script=$(realpath "$0")
 script_path=$(dirname "$script")
 source $(script_path)/common.sh
 
+rabbitmq_user_password=$1
 echo -e "\e[34m>>>>>>> Install Python <<<<<<<\e[0m"
 yum install python36 gcc python3-devel -y
 
@@ -24,6 +25,7 @@ cd /app
 pip3.6 install -r requirements.txt
 
 echo -e "\e[34m>>>>>>> Setup SystemD Payment service <<<<<<<\e[0m"
+sed -i -e 's|rabbitmq_user_password|${rabbitmq_user_password}|' ${script_path}/payment.service
 cp ${script_path}/payment.service /etc/systemd/system/payment.service
 
 echo -e "\e[34m>>>>>>> load and restart the service <<<<<<<\e[0m"
