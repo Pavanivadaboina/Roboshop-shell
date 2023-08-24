@@ -1,8 +1,12 @@
+script=$(realpath "$0")
+script_path=$(dirname "$script")
+source=$(script_path)/common.sh
+
 echo -e "\e[34m>>>>>>> Disbale modyule sql version 8 >>>>>>>\e[0m"
 yum module disable mysql -y
 
 echo -e "\e[34m>>>>>>> Configure Mysql repo >>>>>>>\e[0m"
-cp mysql.repo /etc/yum.repos.d/mysql.repo
+cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
 
 echo -e "\e[34m>>>>>>> Install the mysql <<<<<<<\e[0m"
 yum install mysql-community-server -y

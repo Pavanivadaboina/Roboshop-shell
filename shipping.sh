@@ -1,4 +1,7 @@
-source common.sh
+script=$(realpath "$0")
+script_path=$(dirname "$script")
+source=$(script_path)/common.sh
+
 echo -e "\e[34m>>>>>>> Install Java Dependency MAVEN >>>>>>>\e[0m"
 yum install maven -y
 
@@ -21,7 +24,7 @@ mvn clean package
 mv target/shipping-1.0.jar shipping.jar
 
 echo -e "\e[34m>>>>>>> Start SystemD Shipping Service >>>>>>>\e[0m"
-cp /home/centos/Roboshop-shell/shipping.service /etc/systemd/system/shipping.service
+cp ${script_path}/shipping.service /etc/systemd/system/shipping.service
 systemctl daemon-reload
 systemctl enable shipping
 systemctl restart shipping

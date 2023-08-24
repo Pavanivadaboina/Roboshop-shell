@@ -1,3 +1,7 @@
+script=$(realpath "$0")
+script_path=$(dirname "$script")
+source=${script_path}/common.sh
+
 echo -e "\e[32m>>>>>>> Inatsll NGINIX >>>>>>>\e[0m"
 yum install nginx -y
 
@@ -16,7 +20,7 @@ cd /usr/share/nginx/html
 unzip /tmp/frontend.zip
 
 echo -e "\e[32m >>>>>>> Set up SystemD Service <<<<<<<\e[0m"
-cp /home/centos/Roboshop-shell/roboshop.conf /etc/nginx/default.d/roboshop.conf
+cp ${script_path}/roboshop.conf /etc/nginx/default.d/roboshop.conf
 
 echo -e "\e[32m >>>>>>> Restart Nginx <<<<<<<\e[0m"
 systemctl restart nginx
