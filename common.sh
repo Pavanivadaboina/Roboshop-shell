@@ -3,43 +3,58 @@ app_user=roboshop
 script=$(realpath "$0")
 script_path=$(dirname "$script")
 
-
+print_head()
+{
+ echo -e "\e[34m>>>>>>> $1 >>>>>>>\e[0m"
+}
 func_nodejs()
 {
 
-echo -e "\e[34m>>>>>>> Configure NodeJS repos >>>>>>>\e[0m"
+print_head "Configure NodeJS repos"
 
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
-echo -e "\e[34m>>>>>>> Install NodeJS >>>>>>>\e[0m"
+print_head "Install NodeJS"
 yum install nodejs -y
 
-echo -e "\e[34m>>>>>>> Add Application User  >>>>>>>\e[0m"
+print_head Add Application User
 useradd ${user_app}
 
-echo -e "\e[34m>>>>>>> Create App Directory >>>>>>>\e[0m"
+print_head "Create App Directory"
 rm -rf /app
 mkdir /app
 
-echo -e "\e[34m>>>>>>> Download the Application content >>>>>>>\e[0m"
+print_head "Download the Application content"
 curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
 
-echo -e "\e[34m>>>>>>> Unzip the app content >>>>>>>\e[0m"
+print_head "Unzip the app content"
 cd /app
 unzip /tmp/${component}.zip
 
-echo -e "\e[34m>>>>>>> Install Dependencies  >>>>>>>\e[0m"
+print_head "Install Dependencies"
 npm install
 
-echo -e "\e[34m>>>>>>> Setup SystemD Service   >>>>>>>\e[0m"
+print_head "Setup SystemD Service"
 
 cp ${script_path}/${component}.service /etc/systemd/system/${component}.service
 
-echo -e "\e[34m>>>>>>> Start cart Service >>>>>>>\e[0m"
+print_head "Start cart Service"
 systemctl daemon-reload
 
-echo -e "\e[34m>>>>>>> Restart cart Service >>>>>>>\e[0m"
+print_head  "Restart Service"
 systemctl enable ${component}
 systemctl restart ${component}
 
+}
+
+schema_setup()
+{
+echo -e "\e[34m>>>>>>> copy mongo repo    >>>>>>>\e[0m"
+cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
+
+echo -e "\e[34m>>>>>>> Install mongo client   >>>>>>>\e[0m"
+yum install mongodb-org-shell -y
+
+echo -e "\e[34m>>>>>>> Load Mongo Schema   >>>>>>>\e[0m"
+mongo --host mongo.devopspractice.tech </app/schema/catalogue.js
 }
