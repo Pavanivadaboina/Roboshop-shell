@@ -1,6 +1,6 @@
 script=$(realpath "$0")
 script_path=$(dirname "$script")
-source=${script_path}/common.sh
+source ${script_path}/common.sh
 
 echo -e "\e[32m>>>>>>> Inatsll NGINIX >>>>>>>\e[0m"
 yum install nginx -y

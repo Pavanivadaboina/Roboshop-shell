@@ -1,6 +1,6 @@
 script=$(realpath "$0")
 script_path=$(dirname "$script")
-source=$(script_path)/common.sh
+source $(script_path)/common.sh
 
 echo -e "\e[34m>>>>>>> Disbale modyule sql version 8 >>>>>>>\e[0m"
 yum module disable mysql -y
