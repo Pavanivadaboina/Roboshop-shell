@@ -3,7 +3,6 @@ script_path=$(dirname "$script")
 source $(script_path)/common.sh
 
 mysql_root_password=$1
-read -s $1
 
 echo -e "\e[34m>>>>>>> Install Java Dependency MAVEN >>>>>>>\e[0m"
 yum install maven -y
