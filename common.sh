@@ -7,8 +7,8 @@ print_head()
 {
  echo -e "\e[34m>>>>>>> $1 >>>>>>>\e[0m"
 }
-
-if [ "schema_setup" == "mongo" ]; then
+schema_setup() {
+if [ "$schema_setup" == "mongo" ]; then
 echo print_head "copy mongo repo"
 cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 
@@ -19,11 +19,6 @@ echo "print_head Load Mongo Schema"
 mongo --host mongo.devopspractice.tech </app/schema/catalogue.js
 fi
 }
-
-
-
-
-
 
 
 func_nodejs()
