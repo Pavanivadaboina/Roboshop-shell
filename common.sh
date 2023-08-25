@@ -8,15 +8,16 @@ print_head()
  echo -e "\e[34m>>>>>>> $1 >>>>>>>\e[0m"
 }
 
-schema_setup(){
-echo -e "\e[34m>>>>>>> copy mongo repo    >>>>>>>\e[0m"
+if [ "schema_setup" == "mongo" ]; then
+echo print_head "copy mongo repo"
 cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 
-echo -e "\e[34m>>>>>>> Install mongo client   >>>>>>>\e[0m"
+echo print_head "Install mongo client"
 yum install mongodb-org-shell -y
 
-echo -e "\e[34m>>>>>>> Load Mongo Schema   >>>>>>>\e[0m"
+echo "print_head Load Mongo Schema"
 mongo --host mongo.devopspractice.tech </app/schema/catalogue.js
+fi
 }
 
 
