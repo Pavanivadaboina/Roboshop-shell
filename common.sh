@@ -102,10 +102,10 @@ func_app_prereq
 print_head "Install Dependencies"
 npm install &>>$log_file
 
+func_systemd
 schema_setup
 
-func_systemd
-
+func_status_check
 }
 
 func_java()
