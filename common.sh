@@ -4,7 +4,7 @@ log_file=/tmp/Roboshop-shell.log
 
 print_head()
 {
- echo -e "\e[34m>>>>>>> $1 >>>>>>>\e[0m"
+ echo -e "\e[34m>>>>>>> $1 <<<<<<<\e[0m"
 }
 
 func_status_check()
@@ -66,7 +66,7 @@ func_app_prereq()
   print_head "create Application User"
   id ${app_user} &>>$log_file
   if [ $? -ne 0 ]; then
-  useradd ${user_app} &>>$log_file
+  useradd ${app_user} &>>$log_file
   func_status_check
 
   print_head "Create App Directory"
@@ -82,6 +82,7 @@ func_app_prereq()
   cd /app &>>$log_file
   unzip /tmp/${component}.zip &>>$log_file
   func_status_check
+
 }
 
 
