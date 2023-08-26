@@ -30,7 +30,10 @@ func_status_check
   mongo --host mongo.devopspractice.tech </app/schema/${component}.js &>>$log_file
 func_status_check
 
+  systemctl restart ${component} &>>$log_file
+func_status_check
 fi
+
 
 if [ "$schema_setup" == "mysql" ]; then
 
