@@ -63,7 +63,9 @@ func_systemd()
 
 func_app_prereq()
 {
-  print_head "Add Application User"
+  print_head "create Application User"
+  id ${app_user} &>>$log_file
+  if [ $? -eq 0 ]; then
   useradd ${user_app} &>>$log_file
   func_status_check
 
