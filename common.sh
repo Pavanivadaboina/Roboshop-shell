@@ -128,7 +128,6 @@ func_app_prereq
   schema_setup
 
   func_systemd
-  func_status_check
 
 }
 
