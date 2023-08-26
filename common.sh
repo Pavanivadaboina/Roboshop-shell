@@ -57,7 +57,6 @@ func_systemd()
   systemctl enable ${component} &>>$log_file
   systemctl restart ${component} &>>$log_file
 
-  func_status_check
 }
 
 func_app_prereq()
@@ -107,7 +106,6 @@ schema_setup
 
 func_systemd
 
-func_status_check
 }
 
 func_java()
