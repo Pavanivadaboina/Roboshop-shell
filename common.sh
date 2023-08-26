@@ -14,8 +14,10 @@ func_status_check()
  then
   echo -e "\e[32mSUCCESS\e[0m"
  else
-   echo -e "\e[31SUCCESS\e[0m"
-
+   echo -e "\e[31mFAILURE\e[0m"
+ exit 1
+fi
+}
 
 
 schema_setup() {
@@ -102,4 +104,4 @@ func_app_prereq
   schema_setup
 
   func_systemd
-
+}
