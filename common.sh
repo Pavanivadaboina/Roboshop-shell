@@ -1,7 +1,7 @@
 app_user=roboshop
-script=$(realpath "$0")
-script_path=$(dirname "$script")
+
 log_file=/tmp/Roboshop-shell.log
+
 print_head()
 {
  echo -e "\e[34m>>>>>>> $1 >>>>>>>\e[0m"
@@ -49,6 +49,7 @@ func_status_check
 
 fi
 }
+
 func_systemd()
 {
   print_head "Start SystemD Shipping Service"
