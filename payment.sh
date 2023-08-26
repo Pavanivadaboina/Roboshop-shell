@@ -17,7 +17,7 @@ yum install python36 gcc python3-devel -y
 echo -e "\e[34m>>>>>>> Add Application user  <<<<<<<\e[0m"
 useradd ${user_app}
 
-echo -e "\e[34m>>>>>>> Create App Direactory <<<<<<<\e[0m"
+echo -e "\e[34m>>>>>>> Create App Directory <<<<<<<\e[0m"
 rm -rf /app
 mkdir /app
 
