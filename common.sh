@@ -63,7 +63,7 @@ func_systemd()
 
 func_app_prereq()
 {
-  print_head Add Application User
+  print_head "Add Application User"
   useradd ${user_app} &>>$log_file
   func_status_check
 
