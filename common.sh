@@ -67,6 +67,7 @@ func_app_prereq()
   id ${app_user} &>>$log_file
   if [ $? -ne 0 ]; then
   useradd ${app_user} &>>$log_file
+  fi
   func_status_check
 
   print_head "Create App Directory"
