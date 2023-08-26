@@ -91,6 +91,7 @@ func_nodejs()
 {
 
 print_head "Configure NodeJS repos"
+func_status_check
 
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$log_file
 
