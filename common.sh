@@ -57,7 +57,7 @@ fi
 func_systemd()
 {
   print_head "Start SystemD Service"
-  cp ${script_path}/{component}.service /etc/systemd/system/${component}.service &>>$log_file
+  cp ${script_path}/${component}.service /etc/systemd/system/${component}.service &>>$log_file
   systemctl daemon-reload
   print_head "system restart"
   systemctl enable ${component} &>>$log_file
