@@ -23,7 +23,7 @@ schema_setup() {
 if [ "$schema_setup" == "mongo" ]; then
 
   print_head "copying mongo repo"
-  cp ${script_path}/mongo.repo /etc/yum.repos.d/{component}.repo
+  cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
 func_status_check
   print_head "Install mongo client"
   yum install mongodb-org-shell -y &>>$log_file
@@ -42,6 +42,7 @@ if [ "$schema_setup" == "mysql" ]; then
 print_head "copying mysql repo"
 cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
 func_status_check
+
   print_head "Install Mysql Client"
   yum install mysql -y &>>$log_file
 func_status_check
