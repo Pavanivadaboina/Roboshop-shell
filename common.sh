@@ -56,7 +56,7 @@ func_systemd()
   print_head "system restart"
   systemctl enable ${component} &>>$log_file
   systemctl restart ${component} &>>$log_file
-
+func_status_check
 }
 
 func_app_prereq()
@@ -101,6 +101,8 @@ func_app_prereq
 
 print_head "Install Dependencies"
 npm install &>>$log_file
+
+func_status_check
 
 func_systemd
 schema_setup
