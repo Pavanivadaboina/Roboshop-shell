@@ -39,7 +39,9 @@ fi
 
 
 if [ "$schema_setup" == "mysql" ]; then
-
+print_head "copying mysql repo"
+cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
+func_status_check
   print_head "Install Mysql Client"
   yum install mysql -y &>>$log_file
 func_status_check
