@@ -9,7 +9,7 @@ print_head()
 
 func_status_check()
 {
-  if [ $? -eq 0 ];
+  if [ $1 -eq 0 ];
  then
   echo -e "\e[32mSUCCESS\e[0m"
  else
@@ -24,32 +24,32 @@ if [ "$schema_setup" == "mongo" ]; then
 
   print_head "copying mongo repo"
   cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo
-func_status_check
+func_status_check $?
   print_head "Install mongo client"
   yum install mongodb-org-shell -y &>>$log_file
-func_status_check
+func_status_check $?
 
   print_head "Load Mongo Schema"
   mongo --host mongo.devopspractice.tech </app/schema/${component}.js &>>$log_file
-func_status_check
+func_status_check $?
 
   systemctl restart ${component} &>>$log_file
-func_status_check
+func_status_check $?
 fi
 
 
 if [ "$schema_setup" == "mysql" ]; then
 print_head "copying mysql repo"
 cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo
-func_status_check
+func_status_check $?
 
   print_head "Install Mysql Client"
   yum install mysql -y &>>$log_file
-func_status_check
+func_status_check $?
 
   print_head "Load Schema"
   mysql -h mysql.devopspractice.tech -uroot -or${mysql_root_passwd} < /app/schema/${component}.sql &>>$log_file
-func_status_check
+func_status_check $?
 
 fi
 }
@@ -62,7 +62,7 @@ func_systemd()
   print_head "system restart"
   systemctl enable ${component} &>>$log_file
   systemctl restart ${component} &>>$log_file
-func_status_check
+func_status_check $?
 }
 
 func_app_prereq()
@@ -72,21 +72,21 @@ func_app_prereq()
   if [ $? -ne 0 ]; then
   useradd ${app_user} &>>$log_file
   fi
-  func_status_check
+  func_status_check $?
 
   print_head "Create App Directory"
   rm -rf /app &>>$log_file
   mkdir /app &>>$log_file
-  func_status_check
+  func_status_check $?
 
   print_head "Download the Application content"
   curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>$log_file
-  func_status_check
+  func_status_check $?
 
   print_head "Unzip the app content"
   cd /app &>>$log_file
   unzip /tmp/${component}.zip &>>$log_file
-  func_status_check
+  func_status_check $?
 
 }
 
@@ -95,41 +95,41 @@ func_nodejs()
 {
 
 print_head "Configure NodeJS repos"
-func_status_check
+func_status_check $?
 
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$log_file
 
 print_head "Install NodeJS"
 yum install nodejs -y &>>$log_file
-func_status_check
+func_status_check $?
 
 func_app_prereq
 
 print_head "Install Dependencies"
 npm install &>>$log_file
 
-func_status_check
+func_status_check $?
 
 func_systemd
 schema_setup
 
-func_status_check
+func_status_check $?
 }
 
 func_java()
 {
   print_head "Install Java Dependency MAVEN"
   yum install maven -y &>>$log_file
-  func_status_check
+  func_status_check $?
 
 func_app_prereq
 
   print_head "Download maven Dependencies"
   mvn clean package &>>$log_file
-  func_status_check
+  func_status_check $?
 
   mv target/${component}-1.0.jar ${component}.jar &>>$log_file
-  func_status_check
+  func_status_check $?
 
   schema_setup
 
