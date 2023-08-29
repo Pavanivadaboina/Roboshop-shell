@@ -20,7 +20,7 @@ cp ${script_path}/mysql.repo /etc/yum.repos.d/mysql.repo &>>$log_file
 func_status_check $?
 
 print_head "Install the mysql"
-yum install mysql-community-server -y  &>>$log_file
+yum install mysql-community-server -y &>>$log_file
 func_status_check $?
 
 print_head "start and enable MYSQl"
@@ -29,5 +29,5 @@ systemctl start mysqld &>>$log_file
 func_status_check $?
 
 print_head " Set root pass "
-mysql_secure_installation --set-root-pass $mysql_root_password &>>$log_file
+mysql_secure_installation --set-root-pass ${mysql_root_password} &>>$log_file
 func_status_check $?
