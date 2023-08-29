@@ -1,6 +1,6 @@
 script=$(realpath "$0")
 script_path=$(dirname "$script")
-source $(script_path)/common.sh
+source ${script_path}/common.sh
 
 rabbitmq_user_password=$1
 
@@ -16,7 +16,7 @@ print_head "Install Python"
 yum install python36 gcc python3-devel -y &>>log_file
 func_status_check $?
 
-func_app_prereq()
+func_app_prereq
 
 print_head "Install Python Dependencies"
 cd /app &>>$log_file
