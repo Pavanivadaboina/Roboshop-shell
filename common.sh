@@ -49,7 +49,7 @@ func_status_check $?
 func_status_check $?
 
   print_head "Load Schema"
-  mysql -h mysql.devopspractice.tech -uroot -or${mysql_root_passwd} < /app/schema/${component}.sql &>>$log_file
+  mysql -h mysql.devopspractice.tech -uroot -p${mysql_root_passwd} < /app/schema/${component}.sql &>>$log_file
 func_status_check $?
 
 fi
