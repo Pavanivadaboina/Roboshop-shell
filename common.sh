@@ -120,7 +120,7 @@ func_java()
   yum install maven -y &>>$log_file
   func_status_check $?
 
-func_app_prereq
+  func_app_prereq
 
   print_head "Download maven Dependencies"
   mvn clean package &>>$log_file
@@ -144,7 +144,6 @@ func_status_check $?
 func_app_prereq
 
 print_head "Install Python Dependencies"
-cd /app &>>$log_file
 pip3.6 install -r requirements.txt &>>$log_file
 func_status_check $?
 

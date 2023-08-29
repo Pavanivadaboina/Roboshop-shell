@@ -8,7 +8,7 @@ rabbitmq_user_password=$1
 if [ -z "$rabbitmq_user_password" ];
 then
   echo input password is missing
-  exit
+  exit 1
 fi
 
 component=payment
