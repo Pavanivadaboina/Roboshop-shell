@@ -111,10 +111,9 @@ npm install &>>$log_file
 
 func_status_check $?
 
-func_systemd
 schema_setup
+func_systemd
 
-func_status_check $?
 }
 
 func_java()
