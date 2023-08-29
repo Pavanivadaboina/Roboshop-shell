@@ -7,7 +7,7 @@ mysql_root_password=$1
 if [ -z "$mysql_root_password" ];
 then
   echo input password is missing
-  exit
+  exit 1
 fi
 
 
@@ -25,9 +25,9 @@ func_status_check $?
 
 print_head "start and enable MYSQl"
 systemctl enable mysqld &>>$log_file
-systemctl start mysqld &>>$log_file
+systemctl restart mysqld &>>$log_file
 func_status_check $?
 
-print_head " Set root pass "
-mysql_secure_installation --set-root-pass ${mysql_root_password} &>>$log_file
+print_head " Reset root pass "
+mysql_secure_installation --set-root-pass $mysql_root_password  &>>$log_file
 func_status_check $?
