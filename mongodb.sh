@@ -10,9 +10,9 @@ func_status_check $?
 
 print_head "Install Mongo software"
 yum install mongodb-org -y
-func_status_check $?
+func_status_check
 
-print_head "Start mongod"
+print_head "enable and Start mongod"
 systemctl enable mongod
 systemctl start mongod
 func_status_check $?
