@@ -11,7 +11,7 @@ then
   exit
 fi
 
+component=payment
 
 func_python
 
-func_systemd
