@@ -28,7 +28,7 @@ unzip /tmp/frontend.zip &>>$log_file
 func_status_check $?
 
 print_head " setup systemD service "
-cp ${script_path}/${component}.conf /etc/nginx/default.d/${component}.conf &>>$log_file
+cp ${script_path}/roboshop.conf /etc/nginx/default.d/roboshop.conf &>>$log_file
 func_status_check $?
 
 print_head " restart nginx "
