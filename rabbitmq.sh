@@ -12,22 +12,22 @@ fi
 
 
 print_head "Setup Erlang repos"
-curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash &>>log_file
+curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash &>>$log_file
 func_status_check $?
 
 print_head "Setup RabbitMQ Repos"
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash &>>log_file
+curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash &>>$log_file
 func_status_check $?
 
 print_head "Install RabbitMQ"
-yum install rabbitmq-server -y &>>log_file
+yum install rabbitmq-server -y &>>$log_file
 func_status_check $?
 
 print_head "enable and start RabbitMQ"
-systemctl enable rabbitmq-server &>>log_file
-systemctl start rabbitmq-server &>>log_file
+systemctl enable rabbitmq-server &>>$log_file
+systemctl start rabbitmq-server &>>$log_file
 func_status_check $?
 
 print_head Create Application User in RabbitMQ"
-rabbitmqctl add_user Roboshop-shell ${rabbitmq_user_password} &>>log_file
-rabbitmqctl set_permissions -p / Roboshop-shell ".*" ".*" ".*" &>>log_file
+rabbitmqctl add_user roboshop ${rabbitmq_user_password} &>>$log_file
+rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>$log_file
