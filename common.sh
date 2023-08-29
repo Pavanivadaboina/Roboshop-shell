@@ -148,7 +148,7 @@ cd /app &>>$log_file
 pip3.6 install -r requirements.txt &>>$log_file
 func_status_check $?
 
-print_head  "Setup SystemD Payment service"
+print_head  "Update passwords in SystemD Payment service"
 sed -i -e 's|rabbitmq_user_password|${rabbitmq_user_password}|' ${script_path}/{component}.service &>>$log_file
 func_status_check $?
 
