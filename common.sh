@@ -96,9 +96,8 @@ func_nodejs()
 {
 
 print_head "Configure NodeJS repos"
-func_status_check $?
-
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>$log_file
+func_status_check $?
 
 print_head "Install NodeJS"
 yum install nodejs -y &>>$log_file
@@ -108,7 +107,6 @@ func_app_prereq
 
 print_head "Install Dependencies"
 npm install &>>$log_file
-
 func_status_check $?
 
 schema_setup
