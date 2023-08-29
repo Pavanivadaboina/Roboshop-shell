@@ -7,7 +7,7 @@ rabbitmq_user_password=$1
 if [ -z "$rabbitmq_user_password" ];
 then
   echo input password is missing
-  exit
+  exit 1
 fi
 
 
@@ -28,6 +28,7 @@ systemctl enable rabbitmq-server &>>$log_file
 systemctl start rabbitmq-server &>>$log_file
 func_status_check $?
 
-print_head Create Application User in RabbitMQ"
+print_head "Add Application User in RabbitMQ"
 rabbitmqctl add_user roboshop ${rabbitmq_user_password} &>>$log_file
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>$log_file
+func_status_check $?
