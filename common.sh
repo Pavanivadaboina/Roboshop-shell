@@ -19,7 +19,8 @@ fi
 }
 
 
-schema_setup() {
+schema_setup()
+{
 if [ "$schema_setup" == "mongo" ]; then
 
   print_head "copying mongo repo"
