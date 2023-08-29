@@ -11,6 +11,5 @@ then
 fi
 
 component=shipping
-func_java
-
 schema_setup=mysql
+func_java
