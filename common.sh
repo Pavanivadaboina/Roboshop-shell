@@ -138,7 +138,7 @@ func_java()
 func_python()
 {
 print_head "Install Python"
-yum install python36 gcc python3-devel -y &>>log_file
+yum install python36 gcc python3-devel -y &>>$log_file
 func_status_check $?
 
 func_app_prereq
