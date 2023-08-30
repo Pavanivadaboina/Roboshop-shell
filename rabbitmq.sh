@@ -30,5 +30,5 @@ func_status_check $?
 
 print_head "Add Application User in RabbitMQ"
 rabbitmqctl add_user roboshop ${rabbitmq_user_password} &>>$log_file
-rabbitmqctl set_permissions -p / ${roboshop} ".*" ".*" ".*" &>>$log_file
+rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>$log_file
 func_status_check $?
